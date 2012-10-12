@@ -5,10 +5,6 @@ from BaseModule import BaseModule
 import utils
 
 class llmnr(BaseModule):
-    def printUsage(self):
-	out.moduleUsage("""
-	""")
-
     def getAddress(self, name, answertype):
 	"""
 	    Returns the IP address to use from the module

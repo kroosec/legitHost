@@ -4,10 +4,6 @@ from output import out
 from BaseModule import BaseModule
 
 class arp(BaseModule):
-    def printUsage(self):
-	out.moduleUsage("""
-	""")
-
     def getAddress(self, targetip):
 	address = self.config['address'].get(targetip) or self.config.get("default")
 	if address == "":
