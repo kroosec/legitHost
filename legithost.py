@@ -106,6 +106,10 @@ class LegitHost:
 		# LLMNR (224.0.0.252:5355), same packet format as DNS
 		if packet.data.dst == ip_to_bin("224.0.0.252") and packet.data.data.dport == 5355:
 		    packet.data.data.data = dpkt.dns.DNS(str(packet.data.data.data))
+		# Netbios Name Service (from 137 UDP to 137 UDP)
+		if packet.data.data.dport == 137 and packet.data.data.dport == 137:
+		    packet.data.data.data = dpkt.netbios.NS(str(packet.data.data.data))
+		    
 	    # TCP
 	    elif packet.data.p == dpkt.ip.IP_PROTO_TCP:
 		packet.data.data = dpkt.tcp.TCP(str(packet.data.data))
