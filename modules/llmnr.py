@@ -47,7 +47,7 @@ class llmnr(BaseModule):
 	# And is a LLMNR Request
 	if packet.data.data.data.op & 0x8000 != 0:
 	    return False
-	out.verbose("%s: LLMNR request from %s" % (self.getName(), utils.bin_to_ip(packet.data.src)))
+	out.verbose("%s: Request from %s" % (self.getName(), utils.bin_to_ip(packet.data.src)))
 	out.verbose("%s: \tQueries: %s" % (self.getName(), ' '.join([x.name for x in packet.data.data.data.qd])))
 	return True
 

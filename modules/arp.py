@@ -26,7 +26,7 @@ class arp(BaseModule):
 	targetip = utils.bin_to_ip(packet.data.tpa) 
 	srcip = utils.bin_to_ip(packet.data.spa) 
 	
-	out.verbose("%s module: ARP request for %s from %s" % (self.getName(), targetip, srcip)) 
+	out.verbose("%s: Request for %s from %s" % (self.getName(), targetip, srcip)) 
 	return True
 
     # Reply with an ARP response
