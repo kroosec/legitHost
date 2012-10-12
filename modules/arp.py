@@ -4,11 +4,6 @@ from output import out
 from BaseModule import BaseModule
 
 class arp(BaseModule):
-    def __init__(self, interface):
-	self.interface = interface
-	self.loadConfig()
-	out.debug("Initialized " + self.getName() + " module", 2)
-
     def printUsage(self):
 	out.moduleUsage("""
 	""")

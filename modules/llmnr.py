@@ -5,11 +5,6 @@ from BaseModule import BaseModule
 import utils
 
 class llmnr(BaseModule):
-    def __init__(self, interface):
-	self.interface = interface
-	self.loadConfig()
-	out.debug("Initialized " + self.getName() + " module", 2)
-
     def printUsage(self):
 	out.moduleUsage("""
 	""")

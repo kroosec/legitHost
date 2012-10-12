@@ -1,9 +1,17 @@
 import json
+from output import out
 
 class BaseModule():
+    def __init__(self, interface):
+	self.interface = interface
+	self.loadConfig()
+	out.debug("Initialized " + self.getName() + " module", 2)
 
-    def __init__(self):
-	pass
+    def printDescription(self):
+	out.moduleUsage(self.getName() + " has no description")
+
+    def printUsage(self):
+	out.moduleUsage(self.getName() + " has no usage documentation")
 
     def getName(self):
 	return self.__class__.__name__
