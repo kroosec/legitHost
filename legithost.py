@@ -24,10 +24,11 @@ except:
     exit()
 
 class LegitHost:
-    def __init__(self, ifacename, modules):
+    def __init__(self, ifacename, modules, listen=False):
 	self.mod_dir = 'modules'
 	self.modules = list()
 	self.interface = None
+	self.listen = listen
 	# Get interface to use
 	for iface in pcap.findalldevs():
 	    if ifacename == iface[0]:
@@ -125,9 +126,12 @@ class LegitHost:
 	# Then send it for each module's condition
 	for module in self.modules:
 	    if module.condition(packet):
-		out.debug("%s module accepted new packet." % module.getName(), 1)
-		# TODO Dispatch to another thread
-		module.action(packet)
+		if not self.listen:
+		    out.debug("%s module accepted new packet." % module.getName(), 1)
+		    # TODO Dispatch to another thread
+		    module.action(packet)
+		else:
+		    out.debug("Ignored matched packet for %s module." % module.getName(), 2)
 
     def run(self):
 	# Listen for packets
@@ -139,6 +143,7 @@ if __name__ == '__main__':
     parser.add_argument('-i', dest='interface', type=str, nargs=1, help='Network interface to use.', required=True)
     parser.add_argument('-d', dest='debug', type=int, nargs=1, help='Debug level')
     parser.add_argument('-m', dest='module', type=str, nargs='+', help='Modules list')
+    parser.add_argument('-l',  dest='listen', action='store_true', help='Listen mode')
 
     options = parser.parse_args()
     # Set debug level
@@ -146,5 +151,5 @@ if __name__ == '__main__':
     if options.debug:
 	out.setLevel(options.debug[0])
 
-    legit_host = LegitHost(options.interface[0], options.module)
+    legit_host = LegitHost(options.interface[0], options.module, listen=options.listen)
     legit_host.run()
