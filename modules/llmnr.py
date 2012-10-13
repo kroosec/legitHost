@@ -17,7 +17,7 @@ class llmnr(BaseModule):
 	    address = self.config['address'].get(name) or self.config.get("default")
 	    if address == "default":
 		for ifaceadd in self.interface[2]:
-		    if ifaceadd[0].count(".") == 4:
+		    if ifaceadd[0].count(".") == 3:
 			return ifaceadd[0]
 	# IPv6 record
 	elif answertype == dpkt.dns.DNS_AAAA:
