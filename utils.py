@@ -28,3 +28,9 @@ def ip6_to_bin(ipaddr):
 
 def bin_to_ip6(binip):
     return socket.inet_ntop(socket.AF_INET6, binip)
+
+def get_iface_bcast(iface):
+    for ifaceadd in iface[2]:
+	if ifaceadd[2].count(".") == 3:
+	    return ifaceadd[2]
+    return False
