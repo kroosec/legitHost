@@ -15,14 +15,14 @@ class llmnr(BaseModule):
 	# IPv4 record
 	if answertype == dpkt.dns.DNS_A:
 	    address = self.config['address'].get(name) or self.config.get("default")
-	    if address == "":
+	    if address == "default":
 		for ifaceadd in self.interface[2]:
 		    if ifaceadd[0].count(".") == 4:
 			return ifaceadd[0]
 	# IPv6 record
 	elif answertype == dpkt.dns.DNS_AAAA:
 	    address = self.config['address6'].get(name) or self.config.get("default6")
-	    if address == "":
+	    if address == "default":
 		for ifaceadd in self.interface[2]:
 		    if ifaceadd[0].count(":") > 2:
 			return ifaceadd[0]

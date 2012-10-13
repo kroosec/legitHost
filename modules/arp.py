@@ -6,7 +6,7 @@ from BaseModule import BaseModule
 class arp(BaseModule):
     def getAddress(self, targetip):
 	address = self.config['address'].get(targetip) or self.config.get("default")
-	if address == "":
+	if address == "default":
 	    return utils.get_mac(self.interface[0])
 
 	if not address or address == "none":
