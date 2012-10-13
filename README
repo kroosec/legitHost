@@ -1,14 +1,26 @@
-Simply put, legitHost is a legit host. It is a tool exploits a weakness in various
-multicast and broadcast The tool has a modular architecture and supports
-currently: ARP, LLMNR and NetBios Name Service protocols.
+LegitHost is a tool for exploiting weaknesses in various multicast and
+broadcast The tool has a modular architecture and supports currently: ARP,
+LLMNR and NetBios Name Service protocols.  Simply put, legitHost is a legit
+host. 
 
-As an example, the ARP module listens for ARP Requests and depending on the user
+As an example, the ARP module listens for ARP Requests and depending on
+the user
 defined configuration in modules/arp.cfg replies with an ARP response
 containing an IP Address set by the user.
 
 Each module has an own configuration file, a condition method that returns True
 or False depending on wether it should handle the received packet and an action
 method that is run on the packet (e.g Send a reply) if condition returns True.
+
+Example usage:
+    Help:
+	$python legithost.py -h
+    Run on interface eth0:
+	$sudo python legithost.py -i eth0 -d 1
+    Debug level 2 + Listen mode (won't send responses):
+	$sudo python legithost.py -i eth0 -d 2 -l
+    Use only LMNR and NBNS modules:
+	$sudo python legithost.py -i wlan0 -m llmnr nbns
 
 TODO:
     New protocols: (MDNS, SSDP etc,.)
