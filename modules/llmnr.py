@@ -28,7 +28,7 @@ class llmnr(BaseModule):
 			return ifaceadd[0]
 
 	if not address or address == "none":
-	    return None
+	    return False
 	return address
 
     # Must be a LLMNR Query Message
