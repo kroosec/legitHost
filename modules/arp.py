@@ -23,24 +23,24 @@ class arp(BaseModule):
 	if packet.data.op != dpkt.arp.ARP_OP_REQUEST:
 	    return False
 
-	targetip = utils.bin_to_ip(packet.data.tpa) 
-	srcip = utils.bin_to_ip(packet.data.spa) 
-	
-	out.verbose("%s: Request for %s from %s" % (self.getName(), targetip, srcip)) 
+	targetip = utils.bin_to_ip(packet.data.tpa)
+	srcip = utils.bin_to_ip(packet.data.spa)
+
+	out.verbose("%s: Request for %s from %s" % (self.getName(), targetip, srcip))
 	return True
 
     # Reply with an ARP response
     def action(self, packet):
 	ifname = self.interface[0]
-	targetip = utils.bin_to_ip(packet.data.tpa) 
-	srcip = utils.bin_to_ip(packet.data.spa) 
-	
+	targetip = utils.bin_to_ip(packet.data.tpa)
+	srcip = utils.bin_to_ip(packet.data.spa)
+
 	# Determine what mac address to use
 	targetmac = self.getAddress(targetip)
 	if not targetmac:
 	    return False
 
-	# Ethernet: 
+	# Ethernet:
 	# We set source address as destination
 	packet.dst = packet.src
 	# And we set source address as our address

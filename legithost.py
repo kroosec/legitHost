@@ -10,7 +10,7 @@ from utils import ip_to_bin, get_mac
 try:
     import pcap
 except:
-    out.error("pylibpcap not found.") 
+    out.error("pylibpcap not found.")
     out.error("$sudo pip install pylibpcap.")
     out.error("Exiting.")
     exit()
@@ -18,7 +18,7 @@ except:
 try:
     import dpkt
 except:
-    out.error("dpkt not found.") 
+    out.error("dpkt not found.")
     out.error("$sudo pip install dpkt.")
     out.error("Exiting.")
     exit()
@@ -110,7 +110,7 @@ class LegitHost:
 		# Netbios Name Service (from 137 UDP to 137 UDP)
 		if packet.data.data.dport == 137 and packet.data.data.dport == 137:
 		    packet.data.data.data = dpkt.netbios.NS(str(packet.data.data.data))
-		    
+
 	    # TCP
 	    elif packet.data.p == dpkt.ip.IP_PROTO_TCP:
 		packet.data.data = dpkt.tcp.TCP(str(packet.data.data))

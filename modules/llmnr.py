@@ -11,7 +11,7 @@ class llmnr(BaseModule):
 	    config file.
 	    If Name blacklisted or not found, returns False.
 	"""
-	    
+
 	# IPv4 record
 	if answertype == dpkt.dns.DNS_A:
 	    address = self.config['address'].get(name) or self.config.get("default")

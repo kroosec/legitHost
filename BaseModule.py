@@ -21,7 +21,7 @@ class BaseModule():
 
     def action(self, packet):
 	raise Exception("%s module should implement action" % self.getName())
-    
+
     def loadConfig(self):
 	conf_path = './modules/' + self.getName() + '.cfg'
 	with open(conf_path) as conf_file:
